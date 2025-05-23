@@ -1,0 +1,2 @@
+# Temporal-Word-Embeddings-for-Early-Detection-of-Psychological-Disorders-on-Social-Media
+This repository provides the code for the paper "Temporal Word Embeddings for Early Detection of Psychological Disorders on Social Media". The project explores how temporal shifts in word usage patterns can be leveraged to identify early warning signs of psychological conditions such as depression and anxiety.
