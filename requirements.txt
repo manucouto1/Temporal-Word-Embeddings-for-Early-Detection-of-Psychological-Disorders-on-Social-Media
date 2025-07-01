@@ -1,0 +1,8 @@
+framework3
+torch
+dask
+gensim
+xgboost
+nltk
+peft
+pytorch-metric-learning

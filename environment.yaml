@@ -1,0 +1,7 @@
+name: f3-deltas
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - -r requirements.txt
+    - gensim
