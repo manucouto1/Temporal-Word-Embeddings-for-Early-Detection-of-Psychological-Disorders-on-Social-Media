@@ -65,16 +65,32 @@ The following table presents the comparative performance of the original and Lab
 
 ---
 
+## 📄 Citation
+
+If you use our work, please cite it as follows:
+
+```bibtex
+@article{couto2025temporal,
+  title={Temporal Word Embeddings for Early Detection of Psychological Disorders on Social Media},
+  author={Couto, Manuel and Perez, Anxo and Parapar, Javier and Losada, David E},
+  journal={Journal of Healthcare Informatics Research},
+  pages={1--30},
+  year={2025},
+  publisher={Springer}
+}
+```
+
+---
+
+## 📜 References
+
+> Manuel Couto, Anxo Perez, Javier Parapar & David E. Losada  (2025). *Temporal Word Embeddings for Early Detection of Psychological Disorders on Social Media*. Journal of Healthcare Informatics Research. [https://doi.org/10.1007/s41666-025-00186-9](https://link.springer.com/article/10.1007/s41666-025-00186-9)
+
+---
+
 ## 📫 Contact
 
 For questions or collaboration, contact:
 ✉️ [manuel.couto.pintos@usc.es](mailto:manuel.couto.pintos@usc.es)
 🔗 [LinkedIn](https://www.linkedin.com/in/manuelcoutopintos/)
 
----
-
-## 📜 References
-
-> J. Pérez-Rosas, R. Mihalcea, & L. Resnik (2025). *Temporal Word Embeddings for Early Detection of Psychological Disorders on Social Media*. Journal of Healthcare Informatics Research. [https://doi.org/10.1007/s41666-025-00186-9](https://link.springer.com/article/10.1007/s41666-025-00186-9)
-
----
