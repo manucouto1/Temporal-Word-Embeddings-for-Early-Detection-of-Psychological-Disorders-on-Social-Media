@@ -5,11 +5,14 @@ from src.metrics.precission import PrecissionScore
 from src.metrics.recall import RecallScore
 from src.filters.delta_selector import DeltaSelectorFilter
 from src.filters.svm import ClassifierSVM
+from src.filters.sgd import ClassifierSGD
+from src.filters.rfc import ClassifierRFC
+from src.filters.knn import ClassifierKNN
 from src.filters.twec_filter import TWECFilter
 from src.metrics.erde import ERDE_5, ERDE_50
 
 from framework3.base.base_types import XYData
-from framework3 import F3Pipeline, Cached, SklearnOptimizer
+from framework3 import F3Pipeline, Cached, SklearnOptimizer, HPCPipeline
 from rich import print
 
 depression_2017 = (
@@ -63,8 +66,8 @@ self_harm_2021 = (
 
 
 datasets = [
-    # depression_2017,
-    # depression_2018,
+    depression_2017,
+    depression_2018,
     depression_2022,
     anorexia_2018,
     anorexia_2019,
@@ -119,22 +122,15 @@ def main():
                     ),
                 ),
                 DeltaSelectorFilter(deltas_f="cosine"),
-                F3Pipeline(
+                HPCPipeline(
+                    app_name="test_app",
+                    master="local",
                     filters=[
-                        ClassifierSVM(
-                            tol=0.003,
-                            probability=False,
-                            decision_function_shape="ovr",
-                            kernel="rbf",
-                            gamma="scale",
-                        ).grid(
-                            {
-                                "C": [1, 3, 5],
-                                "class_weight_1": [{1: 1.5}, {1: 2.5}, {1: 3.0}],
-                            }
-                        )
-                    ],
-                ).optimizer(SklearnOptimizer(scoring="f1_weighted", cv=2, n_jobs=-1)),
+                        ClassifierSVM(),
+                        ClassifierRFC(),
+                        ClassifierKNN()
+                    ]
+                )
             ],
             metrics=[
                 PrecissionScore(),

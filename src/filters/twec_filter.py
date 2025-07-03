@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import torch
 import os
+import time
 
 from src.models.twec import TWEC
 from src.models.deltas import DISTANCES
@@ -44,6 +45,8 @@ class TWECFilter(BaseFilter):
             self._cpus = _cpus
 
     def fit(self, x: XYData, y: XYData | None) -> float | None:
+        start = time.time()
+
         data: pd.DataFrame = x.value
         self._twec.train_compass(data.text.values.tolist())
         self._vocab_hash_map = dict(
@@ -52,8 +55,11 @@ class TWECFilter(BaseFilter):
                 range(len(self._twec.compass.wv.index_to_key)),  # type: ignore
             )
         )
+        end = time.time()
+        print(f"* Twec train last: {end - start:.6f} seconds")
 
     def predict(self, x: XYData) -> XYData:
+        start = time.time()
         data: pd.DataFrame = x.value
         n_rows = len(data.index)
         n_cols = len(self._vocab_hash_map.items())
@@ -101,5 +107,6 @@ class TWECFilter(BaseFilter):
                 for metric, values in chunk_result.items():
                     for i, j, val in values:
                         all_deltas[metric][i, j] = val
-
+        end = time.time()
+        print(f"* Twec test last: {end - start:.6f} seconds")
         return XYData.mock(all_deltas)

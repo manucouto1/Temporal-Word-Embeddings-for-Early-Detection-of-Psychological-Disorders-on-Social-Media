@@ -48,7 +48,5 @@ class ClassifierSGD(BaseFilter):
         self._model.fit(x.value, y.value)
 
     def predict(self, x: XYData) -> XYData:
-        print(x.value.shape)
         result = self._model.predict(x.value)
-        print(len(result))
         return XYData.mock(result)
