@@ -48,18 +48,12 @@ class ClassifierSVM(BaseFilter):
         if y is None:
             raise ValueError("y must be provided for training")
 
-        yy = list(map(lambda pair: [pair[1]] * len(pair[0]), zip(x.value, y.value)))
-
-        yy = list(itertools.chain.from_iterable(yy))
-
-        xx = x.value.reshape(-1, x.value.shape[-1]).numpy()
-        self._model.fit(xx, yy)
+        self._model.fit(x.value, y.value)
 
     def predict(self, x: XYData) -> XYData:
-        xx = x.value.reshape(-1, x.value.shape[-1]).numpy()
         if self.probability:
-            result = list(map(lambda i: i[1], self._model.predict_proba(xx)))
+            result = list(map(lambda i: i[1], self._model.predict_proba(x.value)))
             return XYData.mock(result)
         else:
-            result = self._model.predict(xx)
+            result = self._model.predict(x.value)
             return XYData.mock(result)
